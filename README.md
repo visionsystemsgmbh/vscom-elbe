@@ -5,7 +5,7 @@ Debian based E.mbedded L.inux B.uild E.nvironment (ELBE) uses an XML based
 configuration file to create a root file system. This configuration file covers
 various root file system related aspects like package and repository
 management, binary image creation (both SD card and MTD based devices are
-supported) and file system finetuning (create, delete or rename files, foldera
+supported) and file system finetuning (create, delete or rename files, folders
 etc.).
 
 For further information visit project's hope page: https://elbe-rfs.org/
@@ -15,11 +15,13 @@ ELBE Installation
 
 You'll need a Debian Jessie host in order to use ELBE. Perform following steps:
 
-1. `apt install python python-mako python-lxml python-apt python-gpgme python-pyme python-suds tmux qemu-utils qemu-kvm p7zip-full make reprepro`
-2. `git clone https://github.com/visionsystemsgmbh/vscom-elbe.git`
-3. `git clone https://github.com/Linutronix/elbe.git`
-4. `cd elbe`
-5. `git checkout devel/elbe-2.0`
+1. `mkdir /home/user/debian`
+2. `cd /home/user/debian`
+3. `apt install python python-mako python-lxml python-apt python-gpgme python-pyme python-suds tmux qemu-utils qemu-kvm p7zip-full make`
+4. `git clone https://github.com/visionsystemsgmbh/vscom-elbe.git`
+5. `git clone https://github.com/Linutronix/elbe.git`
+6. `cd elbe`
+7. `git checkout devel/elbe-2.0`
 
 Before you can use ELBE as a regular user you need to add this user to the
 kvm/libvrt groups:
@@ -38,35 +40,34 @@ following command and use default settings.
 In our example we assume that the user is "User", e-mail is "user@example.com"
 and comment is "Nothing".
 
-Create a folder `debs` near the `elbe` and `vscom-elbe` folders. Change to it
-and perform:
+Download and install `freight` from https://github.com/freight-team/freight.
+Create following folders:
 
-1. `gpg -a -o user@example.com.gpg.key --export user@example.com`
-2. `mkdir conf`
-3. create a file `conf/distributions` with following content
+* `/home/user/debian/freight/lib`
+* `/home/user/debian/freight/cache`
 
+Create a file `~/.freight.conf` with following content:
 
-    Origin: apt.ownelbe.com
-    Label: apt repository
-    Codename: jessie
-    Architectures: armhf
-    Components: main
-    Description: Own ELBE Debian repo
-    SignWith: yes
+    GPG="user@example.com"
+    VARLIB=/home/user/debian/freight/lib
+    VARCACHE=/home/user/debian/freight/cache
+    ARCHS=armhf
 
 Create folder `debs-bin` near `elbe` and download latest `kernel`, `libonrisc`
 and `libsoc` packages from
 ftp://ftp.visionsystems.de/pub/multiio/OnRISC/Baltos/deb/.
 
-Now you're ready to create a Debian repository structure using `reprepro`:
+Now you're ready to create a Debian repository structure using `freight`:
 
-1. `cd debs`
-2. `reprepro --ask-passphrase -Vb . includedeb jessie ../debs-bin/*.deb`
+1. `cd /home/user/debian/debs-bin`
+2. `freight add *.deb apt/jessie apt/stretch`
+3. `freight cache`
 
-`reprepro` will ask you the same password you gave during the public key
+`freight` will ask you the same password you gave during the public key
 creation. To make this repository available over network perform:
 
-    python -m SimpleHTTPServer 8888
+1. `cd /home/user/debian/freight/cache`
+2. `python -m SimpleHTTPServer 8888`
 
 This will start a HTTP server listening on port 8888.
 
@@ -81,13 +82,13 @@ the host running the package repository you've already created. Just replace
     <url-list>
             <url>
                     <binary>http://localhost:8888 jessie main</binary>
-                    <key>http://localhost:8888/user@example.com.gpg.key</key>
+                    <key>http://localhost:8888/user@pubkey.gpg</key>
             </url>
     </url-list>
 
 To create minimal Debian image perform:
 
-1. `cd ../elbe`
+1. `cd /home/user/debian/elbe`
 2. `./elbe initvm --skip-build-bin --skip-build-sources create --directory=initvm`
 3. `./elbe initvm --skip-build-bin --skip-build-sources submit --directory=initvm ../vscom-elbe/configs/armhf-vscom-baltos-minimal.xml`
 
@@ -101,4 +102,4 @@ for more details about XML configuration files and the whole building process.
 Related Links
 -------------
 
-1. `reprepro` man page: https://mirrorer.alioth.debian.org/reprepro.1.html
+1. `freight` man page: http://freight-team.github.io/freight/freight.5.html

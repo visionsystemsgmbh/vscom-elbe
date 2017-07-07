@@ -13,7 +13,7 @@
 			<url-list>
 				<url>
 					<binary>http://localhost:8888 jessie main</binary>
-					<key>http://localhost:8888/user@example.com.gpg.key</key>
+					<key>http://localhost:8888/pubkey.gpg</key>
 				</url>
 			</url-list>
 		</mirror>
