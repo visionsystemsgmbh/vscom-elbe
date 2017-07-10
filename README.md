@@ -17,7 +17,7 @@ You'll need a Debian Jessie host in order to use ELBE. Perform following steps:
 
 1. `mkdir /home/user/debian`
 2. `cd /home/user/debian`
-3. `apt install python python-mako python-lxml python-apt python-gpgme python-pyme python-suds tmux qemu-utils qemu-kvm p7zip-full make`
+3. `apt install python python-mako python-lxml python-apt python-gpgme python-pyme python-suds tmux qemu-utils qemu-kvm p7zip-full libvirt-bin make`
 4. `git clone https://github.com/visionsystemsgmbh/vscom-elbe.git`
 5. `git clone https://github.com/Linutronix/elbe.git`
 6. `cd elbe`
@@ -37,8 +37,7 @@ following command and use default settings.
 
     gpg --gen-key
 
-In our example we assume that the user is "User", e-mail is "user@example.com"
-and comment is "Nothing".
+In our example we assume that the e-mail is configured as "user@example.com".
 
 Download and install `freight` from https://github.com/freight-team/freight.
 Create following folders:
