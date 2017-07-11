@@ -8,7 +8,7 @@ management, binary image creation (both SD card and MTD based devices are
 supported) and file system finetuning (create, delete or rename files, folders
 etc.).
 
-For further information visit project's hope page: https://elbe-rfs.org/
+For further information visit project's home page: https://elbe-rfs.org/
 
 ELBE Installation
 -----------------
@@ -94,6 +94,11 @@ To create minimal Debian image perform:
 Your SD card image together with build logs can be found under
 `elbe-build-timestamp`. Extract `sdcard.img` from `sdcard.img.gz` and burn
 it to your card.
+
+Bootloader files for the FAT partition as also other file system overlay files
+are stored in the `armhf-vscom-baltos-minimal.xml` file as a `tar.bz2` archive.
+https://elbe-rfs.org/docs/sphinx/article-quickstart.html#advanced-usage
+describes how to access and modify these files.
 
 Please refer to https://elbe-rfs.org/docs/sphinx/article-elbeoverview-en.html
 for more details about XML configuration files and the whole building process.
