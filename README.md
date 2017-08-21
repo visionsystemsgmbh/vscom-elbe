@@ -52,14 +52,14 @@ Create a file `~/.freight.conf` with following content:
     VARCACHE=/home/user/debian/freight/cache
     ARCHS=armhf
 
-Create folder `debs-bin` near `elbe` and download latest `kernel`, `libonrisc`
-and `libsoc` packages from
-ftp://ftp.visionsystems.de/pub/multiio/OnRISC/Baltos/deb/.
+Create folder `debs-bin` near `elbe` and download at least `kernel` and
+`libonrisc` packages from
+ftp://ftp.visionsystems.de/pub/multiio/OnRISC/Baltos/deb/stretch.
 
 Now you're ready to create a Debian repository structure using `freight`:
 
 1. `cd /home/user/debian/debs-bin`
-2. `freight add *.deb apt/jessie apt/stretch`
+2. `freight add *.deb apt/stretch`
 3. `freight cache`
 
 `freight` will ask you the same password you gave during the public key
@@ -80,7 +80,7 @@ the host running the package repository you've already created. Just replace
 
     <url-list>
             <url>
-                    <binary>http://localhost:8888 jessie main</binary>
+                    <binary>http://localhost:8888 stretch main</binary>
                     <key>http://localhost:8888/user@pubkey.gpg</key>
             </url>
     </url-list>
