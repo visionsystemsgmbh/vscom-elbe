@@ -3,7 +3,7 @@
 		<name>onrisc-baltos</name>
 		<version>1.0</version>
 		<description>
-			debian jessie rootfs for OnRISC devices
+			debian stretch rootfs for OnRISC devices
 		</description>
 		<buildtype>armhf</buildtype>
 		<mirror>
@@ -12,12 +12,12 @@
 			<primary_proto>http</primary_proto>
 			<url-list>
 				<url>
-					<binary>http://localhost:8888 jessie main</binary>
-					<key>http://localhost:8888/pubkey.gpg</key>
+					<binary>http://192.168.1.36:8888 stretch main</binary>
+					<key>http://192.168.1.36:8888/pubkey.gpg</key>
 				</url>
 			</url-list>
 		</mirror>
-		<suite>jessie</suite>
+		<suite>stretch</suite>
 	</project>
 	<target>
 		<hostname>onrisc</hostname>
@@ -72,7 +72,7 @@
 		</finetuning>
 		<pkg-list>
 			<pkg>kernel</pkg>
-			<pkg>libonrisc</pkg>
+			<pkg>libonrisc1</pkg>
 			<pkg>less</pkg>
 			<pkg>bash</pkg>
 			<pkg>vim-nox</pkg>
