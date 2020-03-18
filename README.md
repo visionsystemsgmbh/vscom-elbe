@@ -13,7 +13,7 @@ For further information visit project's home page: https://elbe-rfs.org/
 ELBE Installation
 -----------------
 
-You'll need a Debian Jessie host in order to use ELBE. Perform following steps:
+You'll need a Debian Buster host in order to use ELBE. Perform the following steps:
 
 1. `mkdir /home/user/debian`
 2. `cd /home/user/debian`
@@ -21,7 +21,7 @@ You'll need a Debian Jessie host in order to use ELBE. Perform following steps:
 4. `git clone https://github.com/visionsystemsgmbh/vscom-elbe.git`
 5. `git clone https://github.com/Linutronix/elbe.git`
 6. `cd elbe`
-7. `git checkout devel/elbe-2.0`
+7. `git checkout v12.3`
 
 Before you can use ELBE as a regular user you need to add this user to the
 kvm/libvrt groups:
@@ -29,23 +29,23 @@ kvm/libvrt groups:
     adduser <youruser> kvm
     adduser <youruser> libvirt
 
-Setup own Debian Package Repository
+Set up own Debian Package Repository
 -----------------------------------
 
-First of all you'll need to create a public key for repository signing. Invoke
-following command and use default settings.
+First of all, you'll need to create a public key for repository signing. Invoke
+the following command and use default settings.
 
     gpg --gen-key
 
-In our example we assume that the e-mail is configured as "user@example.com".
+In our example, we assume that the e-mail is configured as "user@example.com".
 
 Download and install `freight` from https://github.com/freight-team/freight.
-Create following folders:
+Create the following folders:
 
 * `/home/user/debian/freight/lib`
 * `/home/user/debian/freight/cache`
 
-Create a file `~/.freight.conf` with following content:
+Create a file `~/.freight.conf` with the following content:
 
     GPG="user@example.com"
     VARLIB=/home/user/debian/freight/lib
@@ -54,7 +54,7 @@ Create a file `~/.freight.conf` with following content:
 
 Create folder `debs-bin` near `elbe` and download at least `kernel` and
 `libonrisc` packages from
-ftp://ftp.visionsystems.de/pub/multiio/OnRISC/Baltos/deb/stretch.
+ftp://ftp.visionsystems.de/pub/multiio/OnRISC/Baltos/deb/buster.
 
 Now you're ready to create a Debian repository structure using `freight`:
 
@@ -85,15 +85,16 @@ the host running the package repository you've already created. Just replace
             </url>
     </url-list>
 
-To create minimal Debian image perform:
+To create a minimal Debian image, perform:
 
 1. `cd /home/user/debian/elbe`
-2. `./elbe initvm --skip-build-bin --skip-build-sources create --directory=initvm`
-3. `./elbe initvm --skip-build-bin --skip-build-sources submit --directory=initvm ../vscom-elbe/configs/armhf-vscom-baltos-minimal.xml`
+2. `./elbe initvm --devel create --directory=initvm`
+3. `./elbe initvm --skip-build-bin submit --directory=initvm ../vscom-elbe/configs/armhf-vscom-baltos-minimal.xml`
 
 Your SD card image together with build logs can be found under
 `elbe-build-timestamp`. Extract `sdcard.img` from `sdcard.img.gz` and burn
-it to your card.
+it to your card (you do not need to extract the image if you use
+https://www.balena.io/etcher tool).
 
 Bootloader files for the FAT partition as also other file system overlay files
 are stored in the `armhf-vscom-baltos-minimal.xml` file as a `tar.bz2` archive.
