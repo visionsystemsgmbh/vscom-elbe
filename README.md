@@ -40,6 +40,14 @@ the following command and use default settings.
 In our example, we assume that the e-mail is configured as "user@example.com".
 
 Download and install `freight` from https://github.com/freight-team/freight.
+Right now, `freight` doesn't support packages in quilt format. Perform the
+following actions to install the custom version:
+
+1. `git clone https://github.com/yegorich/freight.git`
+2. `cd freight`
+3. `git checkout support-quilt-format`
+4. `make install`
+
 Create the following folders:
 
 * `/home/user/debian/freight/lib`
@@ -59,7 +67,7 @@ ftp://ftp.visionsystems.de/pub/multiio/OnRISC/Baltos/deb/buster.
 Now you're ready to create a Debian repository structure using `freight`:
 
 1. `cd /home/user/debian/debs-bin`
-2. `freight add *.deb apt/stretch`
+2. `freight add *.deb apt/buster`
 3. `freight cache`
 
 `freight` will ask you the same password you gave during the public key
@@ -80,7 +88,7 @@ the host running the package repository you've already created. Just replace
 
     <url-list>
             <url>
-                    <binary>http://localhost:8888 stretch main</binary>
+                    <binary>http://localhost:8888 buster main</binary>
                     <key>http://localhost:8888/user@pubkey.gpg</key>
             </url>
     </url-list>
@@ -96,9 +104,8 @@ Your SD card image together with build logs can be found under
 it to your card (you do not need to extract the image if you use
 https://www.balena.io/etcher tool).
 
-Bootloader files for the FAT partition as also other file system overlay files
-are stored in the `armhf-vscom-baltos-minimal.xml` file as a `tar.bz2` archive.
-https://elbe-rfs.org/docs/sphinx/article-quickstart.html#advanced-usage
+System overlay files are stored in the `armhf-vscom-baltos-minimal.xml` file as
+a `tar.bz2` archive. https://elbe-rfs.org/docs/sphinx/article-quickstart.html#advanced-usage
 describes how to access and modify these files.
 
 Please refer to https://elbe-rfs.org/docs/sphinx/article-elbeoverview-en.html
