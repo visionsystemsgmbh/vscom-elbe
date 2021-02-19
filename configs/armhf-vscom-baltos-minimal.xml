@@ -8,7 +8,7 @@
 		<buildtype>armhf</buildtype>
 		<mirror>
 			<primary_host>ftp.debian.org</primary_host>
-			<primary_path>/debian</primary_path>
+			<primary_path>debian</primary_path>
 			<primary_proto>http</primary_proto>
 			<url-list>
 				<url>
