@@ -29,8 +29,8 @@ kvm/libvrt groups:
     adduser <youruser> kvm
     adduser <youruser> libvirt
 
-Set up own Debian Package Repository
------------------------------------
+Set up your own Debian Package Repository
+-----------------------------------------
 
 First of all, you'll need to create a public key for repository signing. Invoke
 the following command and use default settings.
@@ -39,14 +39,11 @@ the following command and use default settings.
 
 In our example, we assume that the e-mail is configured as "user@example.com".
 
-Download and install `freight` from https://github.com/freight-team/freight.
-Right now, `freight` doesn't support packages in quilt format. Perform the
-following actions to install the custom version:
+Download and install `freight` from https://github.com/freight-team/freight:
 
-1. `git clone https://github.com/yegorich/freight.git`
+1. `git clone https://github.com/freight-team/freight.git`
 2. `cd freight`
-3. `git checkout support-quilt-format`
-4. `make install`
+3. `make && make install`
 
 Create the following folders:
 
@@ -60,21 +57,20 @@ Create a file `~/.freight.conf` with the following content:
     VARCACHE=/home/user/debian/freight/cache
     ARCHS=armhf
 
-Create folder `debs-bin` near `elbe` and download at least `kernel` and
-`libonrisc` packages from
-ftp://ftp.visionsystems.de/pub/multiio/OnRISC/Baltos/deb/buster.
+Create folder `debs-bin` near `elbe` and download all files from:
+http://ftp.visionsystems.de/multiio/OnRISC/Baltos/deb/bullseye/
 
 Now you're ready to create a Debian repository structure using `freight`:
 
 1. `cd /home/user/debian/debs-bin`
-2. `freight add *.deb apt/buster`
+2. `freight add * apt/bullseye`
 3. `freight cache`
 
 `freight` will ask you the same password you gave during the public key
 creation. To make this repository available over network perform:
 
 1. `cd /home/user/debian/freight/cache`
-2. `python -m SimpleHTTPServer 8888`
+2. `python3 -m http.server 8888`
 
 This will start a HTTP server listening on port 8888.
 
@@ -88,7 +84,7 @@ the host running the package repository you've already created. Just replace
 
     <url-list>
             <url>
-                    <binary>http://localhost:8888 buster main</binary>
+                    <binary>http://localhost:8888 bullseye main</binary>
                     <key>http://localhost:8888/user@pubkey.gpg</key>
             </url>
     </url-list>
