@@ -17,13 +17,13 @@ You'll need a Debian Buster host in order to use ELBE. Perform the following ste
 
 1. `mkdir /home/user/debian`
 2. `cd /home/user/debian`
-3. `apt install python python-mako python-lxml python-apt python-gpgme python-pyme python-suds tmux qemu-utils qemu-kvm p7zip-full libvirt-bin make`
+3. `apt install python3 python3-debian python3-mako python3-lxml python3-apt python3-gpg python3-suds python3-libvirt qemu-utils qemu-kvm p7zip-full make`
 4. `git clone https://github.com/visionsystemsgmbh/vscom-elbe.git`
 5. `git clone https://github.com/Linutronix/elbe.git`
 6. `cd elbe`
-7. `git checkout v12.3`
+7. `git checkout v13.3`
 
-Before you can use ELBE as a regular user you need to add this user to the
+Before you can use ELBE as a regular user, you need to add this user to the
 kvm/libvrt groups:
 
     adduser <youruser> kvm
@@ -85,6 +85,7 @@ the host running the package repository you've already created. Just replace
     <url-list>
             <url>
                     <binary>http://localhost:8888 bullseye main</binary>
+                    <source>http://localhost:8888 bullseye main</source>
                     <key>http://localhost:8888/user@pubkey.gpg</key>
             </url>
     </url-list>
