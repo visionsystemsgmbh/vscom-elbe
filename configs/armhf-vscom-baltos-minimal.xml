@@ -3,7 +3,7 @@
 		<name>onrisc-baltos</name>
 		<version>1.0</version>
 		<description>
-			debian buster rootfs for OnRISC devices
+			debian bullseye rootfs for OnRISC devices
 		</description>
 		<buildtype>armhf</buildtype>
 		<mirror>
