@@ -58,7 +58,7 @@ Create a file `~/.freight.conf` with the following content:
     ARCHS=armhf
 
 Create folder `debs-bin` near `elbe` and download all files from:
-http://ftp.visionsystems.de/multiio/OnRISC/Baltos/deb/bullseye/
+https://www.vscom.de/download/multiio/OnRISC/Baltos/deb/bullseye/
 
 Now you're ready to create a Debian repository structure using `freight`:
 
