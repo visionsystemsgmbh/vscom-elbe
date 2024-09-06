@@ -3,35 +3,34 @@
 		<name>onrisc-baltos</name>
 		<version>1.0</version>
 		<description>
-			debian bullseye rootfs for OnRISC devices
+			debian bookworm rootfs for OnRISC devices
 		</description>
 		<buildtype>armhf</buildtype>
 		<mirror>
 			<primary_host>ftp.debian.org</primary_host>
-			<primary_path>debian</primary_path>
+			<primary_path>/debian</primary_path>
 			<primary_proto>http</primary_proto>
 			<url-list>
 				<url>
-					<binary>http://localhost:8888 bullseye main</binary>
-					<source>http://localhost:8888 bullseye main</source>
-					<key>http://localhost:8888/pubkey.gpg</key>
+					<binary>http://LOCALMACHINE/freight bookworm main</binary>
+					<source>http://LOCALMACHINE/freight bookworm main</source>
 				</url>
 				<url>
-					<binary>http://deb.debian.org/debian bullseye main contrib non-free</binary>
-					<source>http://deb.debian.org/debian bullseye main contrib non-free</source>
+					<binary>http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware</binary>
+					<source>http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware</source>
 				</url>
 				<url>
-					<binary>http://deb.debian.org/debian-security/ bullseye-security main contrib non-free</binary>
-					<source>http://deb.debian.org/debian-security/ bullseye-security main contrib non-free</source>
+					<binary>http://deb.debian.org/debian-security/ bookworm-security main contrib non-free non-free-firmware</binary>
+					<source>http://deb.debian.org/debian-security/ bookworm-security main contrib non-free non-free-firmware</source>
 				</url>
 				<url>
-					<binary>http://deb.debian.org/debian bullseye-updates main contrib non-free</binary>
-					<source>http://deb.debian.org/debian bullseye-updates main contrib non-free</source>
+					<binary>http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware</binary>
+					<source>http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware</source>
 				</url>
 			</url-list>
 		</mirror>
 		<noauth/>
-		<suite>bullseye</suite>
+		<suite>bookworm</suite>
 	</project>
 	<target>
 		<hostname>onrisc</hostname>
@@ -59,7 +58,9 @@
 				<mountpoint>/</mountpoint>
 				<fs>
 					<type>ext4</type>
-					<tune2fs>-i 0</tune2fs>
+					<fs-finetuning>
+						<device-command>tune2fs -i 0 {device}</device-command>
+					</fs-finetuning>
 					<passno>1</passno>
 				</fs>
 			</bylabel>

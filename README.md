@@ -21,13 +21,13 @@ You'll need a Debian Buster host in order to use ELBE. Perform the following ste
 4. `git clone https://github.com/visionsystemsgmbh/vscom-elbe.git`
 5. `git clone https://github.com/Linutronix/elbe.git`
 6. `cd elbe`
-7. `git checkout v13.3`
+7. `git checkout v14.9.3`
 
 Before you can use ELBE as a regular user, you need to add this user to the
 kvm/libvrt groups:
 
-    adduser <youruser> kvm
-    adduser <youruser> libvirt
+    usermod -aG kvm $USER
+    usermod -aG libvirt $USER
 
 Set up your own Debian Package Repository
 -----------------------------------------
