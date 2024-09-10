@@ -13,7 +13,10 @@ For further information visit project's home page: https://elbe-rfs.org/
 ELBE Installation
 -----------------
 
-You'll need a Debian Buster host in order to use ELBE. Perform the following steps:
+You'll need a host with a recent Debian or Debian-like OS in order to use ELBE.
+This setup was tested on a Ubuntu 22.04.1 LTS machine.
+
+Perform the following steps to download ELBE and its dependencies:
 
 1. `mkdir /home/user/debian`
 2. `cd /home/user/debian`
@@ -23,7 +26,7 @@ You'll need a Debian Buster host in order to use ELBE. Perform the following ste
 6. `cd elbe`
 7. `git checkout v14.9.3`
 
-Before you can use ELBE as a regular user, you need to add this user to the
+Before you can use ELBE as a regular user, you'll need to add this user to the
 kvm/libvrt groups:
 
     usermod -aG kvm $USER
@@ -60,7 +63,7 @@ Create a file `~/.freight.conf` with the following content:
 Create folder `debs-bin` near `elbe` and download all files from:
 https://www.vscom.de/download/multiio/OnRISC/Baltos/deb/bookworm/
 
-Now you're ready to create a Debian repository structure using `freight`:
+Now, you're ready to create a Debian repository structure using `freight`:
 
 1. `cd /home/user/debian/debs-bin`
 2. `freight add * apt/bookworm`
