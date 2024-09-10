@@ -58,12 +58,12 @@ Create a file `~/.freight.conf` with the following content:
     ARCHS=armhf
 
 Create folder `debs-bin` near `elbe` and download all files from:
-https://www.vscom.de/download/multiio/OnRISC/Baltos/deb/bullseye/
+https://www.vscom.de/download/multiio/OnRISC/Baltos/deb/bookworm/
 
 Now you're ready to create a Debian repository structure using `freight`:
 
 1. `cd /home/user/debian/debs-bin`
-2. `freight add * apt/bullseye`
+2. `freight add * apt/bookworm`
 3. `freight cache`
 
 `freight` will ask you the same password you gave during the public key
@@ -84,8 +84,8 @@ the host running the package repository you've already created. Just replace
 
     <url-list>
             <url>
-                    <binary>http://localhost:8888 bullseye main</binary>
-                    <source>http://localhost:8888 bullseye main</source>
+                    <binary>http://localhost:8888 bookworm main</binary>
+                    <source>http://localhost:8888 bookworm main</source>
                     <key>http://localhost:8888/user@pubkey.gpg</key>
             </url>
     </url-list>
@@ -94,7 +94,10 @@ To create a minimal Debian image, perform:
 
 1. `cd /home/user/debian/elbe`
 2. `./elbe initvm --devel create --directory=initvm`
-3. `./elbe initvm --skip-build-bin submit --directory=initvm ../vscom-elbe/configs/armhf-vscom-baltos-minimal.xml`
+3. `./elbe initvm --skip-build-bin --skip-build-sources submit --directory=initvm ../vscom-elbe/configs/armhf-vscom-baltos-minimal.xml`
+
+If you need an image with the sources (OSS compliance etc.), just remove `--skip-build-sources`
+from the upper command.
 
 Your SD card image together with build logs can be found under
 `elbe-build-timestamp`. Extract `sdcard.img` from `sdcard.img.gz` and burn
