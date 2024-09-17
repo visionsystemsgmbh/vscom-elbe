@@ -91,7 +91,7 @@
 		<pkg-list>
 			<pkg>libonrisc1</pkg>
 			<pkg>barebox-image-elbe-2020.08.1</pkg>
-			<pkg>linux-image-5.4.61-elbe</pkg>
+			<pkg>linux-image-6.1.110-elbe</pkg>
 			<pkg>less</pkg>
 			<pkg>bash</pkg>
 			<pkg>vim-nox</pkg>
