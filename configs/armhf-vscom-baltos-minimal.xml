@@ -81,6 +81,7 @@
 			<rm>var/cache/man/*</rm>
 			<rm>var/cache/elbe</rm>
 			<rm>var/cache/debconf/*</rm>
+			<command>ln -s /dev/null /etc/systemd/network/73-usb-net-by-mac.link</command>
 			<command>ln -s /dev/null /etc/systemd/network/99-default.link</command>
 			<command>echo "en_US.UTF-8 UTF-8" &gt; /etc/locale.gen</command>
 			<command>locale-gen</command>
