@@ -91,7 +91,7 @@
 		</project-finetuning>
 		<pkg-list>
 			<pkg>libonrisc1</pkg>
-			<pkg>barebox-image-elbe-2020.08.1</pkg>
+			<pkg>barebox-image-elbe-2024.09.0</pkg>
 			<pkg>linux-image-6.1.110-elbe</pkg>
 			<pkg>less</pkg>
 			<pkg>bash</pkg>
